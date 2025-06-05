@@ -110,7 +110,7 @@ export default function Home() {
           <a-assets>{videoUrl && <video id="video" crossOrigin="anonymous" playsInline webkit-playsinline="true" loop src={videoUrl} />}</a-assets>
 
           {/* Kamera & Reticle */}
-          <a-entity position="0 -0.4 -5.894">
+          <a-entity position="-2 -1.2 -14">
             <a-camera wasd-controls-enabled="true" look-controls-enabled="true" cursor="fuse: true; fuseTimeout: 2000" raycaster="objects: .interactable-object" reticle-fuse-animation>
               <a-entity id="reticle-progress" geometry="primitive: ring; radiusInner: 0.035; radiusOuter: 0.045" material="color: red; shader: flat; opacity: 0.5" position="0 0 -1" visible="false"></a-entity>
               <a-entity geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.025" material="color: red; shader: flat" position="0 0 -1"></a-entity>
@@ -128,7 +128,7 @@ export default function Home() {
           <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/vr_cinema_environment/scene.gltf" position="0 0 -5" scale="1 1 1"></a-entity>
 
           {/* NPC dengan animasi */}
-          <a-entity id="model2" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/NPC.gltf" animation-mixer position="0 -2.098 -17.042" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model2" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="0 -2.098 -17.042" rotation="0 180 0" scale="1 1 1"></a-entity>
         </a-scene>
       ) : (
         <div>Loading VR Scene...</div>
