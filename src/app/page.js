@@ -118,17 +118,20 @@ export default function Home() {
           </a-entity>
 
           {/* Layar Video */}
-          <a-plane width="1.78" height="1" material="src: #video" position="0 2.8 -32.448" scale="11 11 11" class="interactable-object" video-texture-update></a-plane>
+          <a-plane width="1.78" height="1" material="src: #video" position="3.626 2.82 -44.648" scale="16.31 16.31 16.31" class="interactable-object" video-texture-update></a-plane>
 
           {/* Lighting */}
           <a-entity light="type: ambient; intensity: 1"></a-entity>
           <a-entity light="type: directional; intensity: 0.5" position="1 1 0.5"></a-entity>
 
           {/* Lingkungan */}
-          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/vr_cinema_environment/scene.gltf" position="0 0 -5" scale="1 1 1"></a-entity>
+          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/scene.gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
 
           {/* NPC dengan animasi */}
           <a-entity id="model2" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="0 -2.098 -17.042" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model3" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%202/NPC1.gltf" animation-mixer position="6.128 -2.889 -20.488" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model4" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%203/NPC2.gltf" animation-mixer position="6.128 -1.044 -11.582" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model5" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="-4.665 -1.413 -13.887" rotation="0 169.340 0" scale="1 1 1"></a-entity>
         </a-scene>
       ) : (
         <div>Loading VR Scene...</div>
