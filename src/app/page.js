@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [videoUrl, setVideoUrl] = useState(null);
   const [showScene, setShowScene] = useState(false);
+  const [showGuideText, setShowGuideText] = useState(true);
 
   // Cek apakah A-Frame atau komponen sudah termuat
   const isAFrameLoaded = () => {
@@ -31,9 +32,15 @@ export default function Home() {
                     this.el.addEventListener("mouseenter", () => {
                       const videoEl = document.querySelector("#video");
                       if (videoEl) {
-                        videoEl.play().catch(console.error);
-                        this.el.setAttribute("material", "src", "#video");
-                        console.log("Video started and texture updated");
+                        videoEl
+                          .play()
+                          .then(() => {
+                            this.el.setAttribute("color", "white"), this.el.setAttribute("material", "src", "#video");
+                            console.log("Video started and texture updated");
+                            const guideText = document.querySelector("#guide-text");
+                            if (guideText) guideText.setAttribute("visible", "false");
+                          })
+                          .catch(console.error);
                       }
                     });
                   },
@@ -181,11 +188,12 @@ export default function Home() {
             <a-camera wasd-controls-enabled="true" look-controls-enabled="true" cursor="fuse: true; fuseTimeout: 2000" raycaster="objects: .interactable-object" reticle-fuse-animation>
               <a-entity id="reticle-progress" geometry="primitive: ring; radiusInner: 0.035; radiusOuter: 0.045" material="color: red; shader: flat; opacity: 0.5" position="0 0 -1" visible="false"></a-entity>
               <a-entity geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.025" material="color: red; shader: flat" position="0 0 -1"></a-entity>
+              {showGuideText && <a-text id="guide-text" value="Arahkan pandangan ke layar untuk mulai menonton" align="center" position="0 0.2 -0.9" width="1.5" color="#FFF" shader="msdf" negate="false"></a-text>}
             </a-camera>
           </a-entity>
 
           {/* Layar Video */}
-          <a-plane width="1.78" height="1" material="src: #video" position="3.626 2.82 -44.648" scale="16.31 16.31 16.31" class="interactable-object" video-texture-update></a-plane>
+          <a-plane width="1.78" color="grey" height="1" material="src: #video" position="3.626 2.82 -44.648" scale="16.31 16.31 16.31" class="interactable-object" video-texture-update></a-plane>
 
           {/* Lighting */}
           <a-entity light="type: ambient; intensity: 1"></a-entity>
