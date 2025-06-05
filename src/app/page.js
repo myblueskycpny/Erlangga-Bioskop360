@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [videoUrl, setVideoUrl] = useState(null);
-
   const [showScene, setShowScene] = useState(false);
 
   // Cek apakah A-Frame atau komponen sudah termuat
@@ -33,12 +32,8 @@ export default function Home() {
                       const videoEl = document.querySelector("#video");
                       if (videoEl) {
                         videoEl.play().catch(console.error);
-
-                        // Pastikan video sudah dimuat di assets sebelum diset sebagai material
                         this.el.setAttribute("material", "src", "#video");
                         console.log("Video started and texture updated");
-                      } else {
-                        console.warn("video element not found when trying to play");
                       }
                     });
                   },
@@ -82,7 +77,6 @@ export default function Home() {
           console.error("Failed to load A-Frame or extras:", error);
         }
       } else {
-        // Jika sudah termuat, langsung tampilkan scene
         setShowScene(true);
       }
     };
@@ -103,9 +97,82 @@ export default function Home() {
       });
   }, []);
 
+  useEffect(() => {
+    if (!showScene) return;
+
+    const loadingEl = document.getElementById("loading");
+    const video = document.querySelector("#video");
+    const model1 = document.querySelector("#model1");
+    const model2 = document.querySelector("#model2");
+    const model3 = document.querySelector("#model3");
+    const model4 = document.querySelector("#model4");
+    const model5 = document.querySelector("#model5");
+
+    if (!loadingEl || !video || !model1 || !model2 || !model3 || !model4 || !model5) {
+      console.warn("Some elements not found for loading check");
+      return;
+    }
+
+    let model1Loaded = false;
+    let model2Loaded = false;
+    let model3Loaded = false;
+    let model4Loaded = false;
+    let model5Loaded = false;
+    let videoLoaded = false;
+
+    const checkAllLoaded = () => {
+      if (model1Loaded && model2Loaded && model3Loaded && model4Loaded && model5Loaded && videoLoaded) {
+        loadingEl.style.opacity = "0";
+        setTimeout(() => (loadingEl.style.display = "none"), 1000);
+      }
+    };
+
+    model1.addEventListener("model-loaded", () => {
+      model1Loaded = true;
+      checkAllLoaded();
+    });
+
+    model2.addEventListener("model-loaded", () => {
+      model2Loaded = true;
+      checkAllLoaded();
+    });
+
+    model3.addEventListener("model-loaded", () => {
+      model3Loaded = true;
+      checkAllLoaded();
+    });
+
+    model4.addEventListener("model-loaded", () => {
+      model4Loaded = true;
+      checkAllLoaded();
+    });
+
+    model5.addEventListener("model-loaded", () => {
+      model5Loaded = true;
+      checkAllLoaded();
+    });
+
+    video.addEventListener("loadeddata", () => {
+      videoLoaded = true;
+      checkAllLoaded();
+    });
+
+    // Cleanup function
+    return () => {
+      model1.removeEventListener("model-loaded", () => {});
+      model2.removeEventListener("model-loaded", () => {});
+      model3.removeEventListener("model-loaded", () => {});
+      model4.removeEventListener("model-loaded", () => {});
+      model5.removeEventListener("model-loaded", () => {});
+      video.removeEventListener("loadeddata", () => {});
+    };
+  }, [showScene]);
+
   return (
     <>
-      {showScene ? (
+      <div id="loading">Loading VR Cinema...</div>
+
+      {showScene && (
         <a-scene xr-mode-ui="enabled: true" background="color: black">
           <a-assets>{videoUrl && <video id="video" crossOrigin="anonymous" playsInline webkit-playsinline="true" loop src={videoUrl} />}</a-assets>
 
@@ -133,8 +200,6 @@ export default function Home() {
           <a-entity id="model4" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%203/NPC2.gltf" animation-mixer position="6.128 -1.044 -11.582" rotation="0 180 0" scale="1 1 1"></a-entity>
           <a-entity id="model5" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="-4.665 -1.413 -13.887" rotation="0 169.340 0" scale="1 1 1"></a-entity>
         </a-scene>
-      ) : (
-        <div>Loading VR Scene...</div>
       )}
     </>
   );
