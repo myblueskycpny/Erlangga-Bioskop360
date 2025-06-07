@@ -188,7 +188,7 @@ export default function Home() {
             <a-camera wasd-controls-enabled="true" look-controls-enabled="true" cursor="fuse: true; fuseTimeout: 2000" raycaster="objects: .interactable-object" reticle-fuse-animation>
               <a-entity id="reticle-progress" geometry="primitive: ring; radiusInner: 0.035; radiusOuter: 0.045" material="color: red; shader: flat; opacity: 0.5" position="0 0 -1" visible="false"></a-entity>
               <a-entity geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.025" material="color: red; shader: flat" position="0 0 -1"></a-entity>
-              {showGuideText && <a-text id="guide-text" value="Arahkan pandangan ke layar untuk mulai menonton" align="center" position="0 0.2 -0.9" width="1.5" color="#FFF" shader="msdf" negate="false"></a-text>}
+              {showGuideText && <a-text id="guide-text" value="Arahkan pandangan ke layar untuk mulai menonton" align="center" position="0 0.25 -1.2" width="1.0" wrap-count="20" color="#FFF" shader="msdf" negate="true"></a-text>}
             </a-camera>
           </a-entity>
 
@@ -200,7 +200,7 @@ export default function Home() {
           <a-entity light="type: directional; intensity: 0.5" position="1 1 0.5"></a-entity>
 
           {/* Lingkungan */}
-          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/scene.gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
+          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/Cinema(100kVerts).gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
 
           {/* NPC dengan animasi */}
           <a-entity id="model2" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="0 -2.098 -17.042" rotation="0 180 0" scale="1 1 1"></a-entity>
