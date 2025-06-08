@@ -218,10 +218,10 @@ export default function Home() {
 
           {/* Lighting */}
           <a-entity light="type: ambient; intensity: 1"></a-entity>
-          <a-entity light="type: directional; intensity: 0.5" position="1 1 0.5"></a-entity>
+          {/* <a-entity light="type: directional; intensity: 0.5" position="1 1 0.5"></a-entity> */}
 
           {/* Lingkungan */}
-          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/scene.gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
+          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/Cinema(100kVerts).gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
         </a-scene>
       )}
     </>

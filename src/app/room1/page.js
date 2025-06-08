@@ -184,29 +184,29 @@ export default function Home() {
           <a-assets>{videoUrl && <video id="video" crossOrigin="anonymous" playsInline webkit-playsinline="true" loop src={videoUrl} />}</a-assets>
 
           {/* Kamera & Reticle */}
-          <a-entity position="-2 -1.634 -17.019">
+          <a-entity position="-2 -1.5 -13.511">
             <a-camera wasd-controls-enabled="true" look-controls-enabled="true" cursor="fuse: true; fuseTimeout: 2000" raycaster="objects: .interactable-object" reticle-fuse-animation>
               <a-entity id="reticle-progress" geometry="primitive: ring; radiusInner: 0.035; radiusOuter: 0.045" material="color: red; shader: flat; opacity: 0.5" position="0 0 -1" visible="false"></a-entity>
               <a-entity geometry="primitive: ring; radiusInner: 0.015; radiusOuter: 0.025" material="color: red; shader: flat" position="0 0 -1"></a-entity>
-              {showGuideText && <a-text id="guide-text" value="Arahkan pandangan ke layar untuk mulai menonton" align="center" position="0 0.2 -0.9" width="1.5" color="#FFF" shader="msdf" negate="false"></a-text>}
+              {showGuideText && <a-text id="guide-text" value="Arahkan pandangan ke layar untuk mulai menonton" align="center" position="0 0.25 -1.2" width="1.0" wrap-count="20" color="#FFF" shader="msdf" negate="true"></a-text>}
             </a-camera>
           </a-entity>
 
           {/* Layar Video */}
-          <a-plane width="1.78" color="grey" height="1" material="src: #video" position="2.966 1 -34.648" scale="20 20 20" class="interactable-object" video-texture-update></a-plane>
+          <a-plane width="1.78" color="grey" height="1" material="src: #video" position="3.626 2.82 -44.648" scale="16.31 16.31 16.31" class="interactable-object" video-texture-update></a-plane>
 
           {/* Lighting */}
-          <a-entity light="type: ambient; intensity: 1"></a-entity>
-          <a-entity light="type: directional; intensity: 0.5" position="1 1 0.5"></a-entity>
+          <a-entity light="type: spot; angle: 25; intensity: 30" position="3.626 15.869 -0.131" rotation="-6.110 0 0"></a-entity>
+          <a-entity light="type: hemisphere; intensity: 0.080"></a-entity>
 
           {/* Lingkungan */}
-          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%203D/Cinema3D.gltf" position="2.966 1.008 -11.872" rotation="0 180 0" scale="2 2 2"></a-entity>
+          <a-entity id="model1" gltf-model="https://myblueskycpny.github.io/360Assets/Cinema%20(100k%20verts)/Cinema(100kVerts).gltf" position="3.626 -5.464 -24.580" rotation="0 180 0" scale="0.05 0.05 0.05"></a-entity>
 
           {/* NPC dengan animasi */}
           <a-entity id="model2" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="0 -2.098 -17.042" rotation="0 180 0" scale="1 1 1"></a-entity>
-          <a-entity id="model3" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%202/NPC1.gltf" animation-mixer position="5.960 -3.194 -18.803" rotation="0 180 0" scale="1 1 1"></a-entity>
-          <a-entity id="model4" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%203/NPC2.gltf" animation-mixer position="5.984 -0.985 -15.175" rotation="0 180 0" scale="1 1 1"></a-entity>
-          <a-entity id="model5" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="-1.033 -4.277 -20.820" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model3" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%202/NPC1.gltf" animation-mixer position="6.128 -2.889 -20.488" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model4" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%203/NPC2.gltf" animation-mixer position="6.128 -1.044 -11.582" rotation="0 180 0" scale="1 1 1"></a-entity>
+          <a-entity id="model5" gltf-model="https://myblueskycpny.github.io/360Assets/NPC/Model%201/NPC.gltf" animation-mixer position="-4.665 -1.413 -13.887" rotation="0 169.340 0" scale="1 1 1"></a-entity>
         </a-scene>
       )}
     </>
