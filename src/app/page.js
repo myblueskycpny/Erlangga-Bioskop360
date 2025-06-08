@@ -196,7 +196,7 @@ export default function Home() {
             {videoOptions.map((video, index) => (
               <div key={index} className={`video-poster ${selectedVideoIndex === index ? "selected" : ""}`} onClick={() => handleVideoSelect(index)}>
                 <img src="https://cdn.fliki.ai/image/page/660ba680adaa44a37532fd97/666310fc647d79dc96fd21a3.jpg" alt={video.title} />
-                <div className="video-title">{video.title}</div>
+                <div className="video-title">Video {index + 1}</div>
               </div>
             ))}
           </div>
@@ -270,58 +270,120 @@ export default function Home() {
           display: flex;
           flex-direction: column;
           align-items: center;
-          justify-content: center;
           padding: 20px;
+          overflow-y: auto; /* Enable scrolling */
           z-index: 1000;
+          box-sizing: border-box;
         }
+
         .video-selection-container h1 {
-          margin-bottom: 30px;
-          font-size: 2rem;
+          margin: 20px 0;
+          font-size: 1.8rem;
+          text-align: center;
         }
+
         .video-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-          gap: 20px;
-          max-width: 1000px;
+          gap: 15px;
+          max-width: 1200px;
           width: 100%;
-          margin-bottom: 30px;
+          margin-bottom: 20px;
+          padding: 0 10px;
         }
+
         .video-poster {
           cursor: pointer;
           transition: transform 0.2s, box-shadow 0.2s;
           text-align: center;
         }
+
         .video-poster:hover {
           transform: scale(1.05);
         }
+
         .video-poster.selected {
           box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
         }
+
         .video-poster img {
           width: 100%;
           height: auto;
           border-radius: 5px;
+          aspect-ratio: 16 / 9; /* Maintain consistent image ratio */
         }
+
         .video-title {
-          margin-top: 10px;
-          font-size: 1rem;
+          margin-top: 8px;
+          font-size: 0.9rem;
+          color: #fff;
         }
+
         .confirm-button {
-          padding: 12px 30px;
+          padding: 10px 25px;
           background: #e50914;
           color: white;
           border: none;
           border-radius: 4px;
-          font-size: 1.2rem;
+          font-size: 1rem;
           cursor: pointer;
           transition: background 0.2s;
+          margin-bottom: 20px; /* Space at bottom for scrolling */
+          width: fit-content;
         }
+
         .confirm-button:hover {
           background: #f6121d;
         }
+
         .confirm-button:disabled {
           background: #555;
           cursor: not-allowed;
+        }
+
+        /* Mobile-specific styles */
+        @media (max-width: 768px) {
+          .video-selection-container {
+            padding: 15px;
+          }
+
+          .video-selection-container h1 {
+            font-size: 1.4rem;
+            margin: 15px 0;
+          }
+
+          .video-grid {
+            grid-template-columns: 1fr; /* Single column on mobile */
+            gap: 10px;
+            padding: 0 5px;
+          }
+
+          .video-poster img {
+            max-width: 100%;
+          }
+
+          .video-title {
+            font-size: 0.85rem;
+          }
+
+          .confirm-button {
+            width: 100%; /* Full-width button on mobile */
+            padding: 12px;
+            font-size: 1rem;
+          }
+        }
+
+        /* Ensure button is accessible on very small screens */
+        @media (max-height: 600px) {
+          .video-selection-container {
+            justify-content: flex-start; /* Align content to top */
+          }
+
+          .confirm-button {
+            position: sticky;
+            bottom: 10px; /* Stick button to bottom */
+            margin-top: 10px;
+          }
         }
       `}</style>
     </>
